@@ -2,7 +2,6 @@ package com.agile.data.problem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,12 @@ public class ThirdProblem {
 
 			while (n > pos) {
 				if (i == array[n - 1]) {
-					findIt.add(i);
+					if (findIt.contains(i)) {
+
+					} else {
+						findIt.add(i);
+					}
+
 				}
 				n--;
 			}
@@ -35,22 +39,30 @@ public class ThirdProblem {
 		int n = s.nextInt();
 
 		int array[] = new int[n];
+
 		System.out.println("Enter loop values");
-		for (int i = 0; i <= n - 1; i++) {
-			try {
-				array[i] = s.nextInt(n + 1);
-			} catch (InputMismatchException e) {
-				System.err.println("Unable to read values > " + n);
+		while (true) {
+
+			for (int i = 0; i <= n - 1; i++) {
+				int input = s.nextInt();
+				if (input > n) {
+					System.out.println("Try a lower value than: " + n);
+					i--;
+					continue;
+
+				} else {
+					array[i] = input;
+
+				}
 			}
 
+			System.out.println("Array is:");
+			System.out.println(Arrays.toString(array));
+
+			ThirdProblem pb = new ThirdProblem();
+			List<Integer> result = pb.findDuplicate(array);
+			System.out.println("Duplicate number is: " + result);
+			s.close();
 		}
-		System.out.println("Array is:");
-		System.out.println(Arrays.toString(array));
-
-		ThirdProblem pb = new ThirdProblem();
-		List<Integer> result = pb.findDuplicate(array);
-		System.out.println("Duplicate number is: " + result);
-		s.close();
 	}
-
 }

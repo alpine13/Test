@@ -21,6 +21,8 @@ public class SecondProblem {
 
 		int secondValue = array[0];
 		int maxValue = maxValue(array);
+		if (secondValue == maxValue)
+			secondValue = array[1];
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] < maxValue && array[i] > secondValue) {
 

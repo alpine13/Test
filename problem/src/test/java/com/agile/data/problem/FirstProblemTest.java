@@ -1,29 +1,51 @@
 package com.agile.data.problem;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 
 import org.junit.*;
 
 public class FirstProblemTest {
 
 	public int array[] = { 2, 3, 2, 3, 8 };
+	public int negativeArray[] = { -2, 3, -2, 3, 0 };
+	public int expectedValue;
 
 	@Test
-	public void testSum_succes() {
+	public void testSumOfEvenNumbers_WithCorectDataSet() {
 
-		int corect = 12;
+		expectedValue = 12;
 
 		FirstProblem pb = new FirstProblem();
-		assertEquals(corect, pb.sum(array));
+		assertEquals(expectedValue, pb.sum(array));
 
 	}
 
 	@Test
-	public void testSum_fail() {
+	public void testSumOfEvenNumbers_WithWrongDataSet() {
 
-		int bad = 10;
-		
+		expectedValue = 10;
+
 		FirstProblem pb = new FirstProblem();
-		Assert.assertNotSame(bad, pb.sum(array));
+		assertNotSame(expectedValue, pb.sum(array));
+	}
+
+	@Test
+	public void testSumOfEvenNumbers_WithNegativeWithCorectDataSet() {
+
+		expectedValue = -4;
+
+		FirstProblem pb = new FirstProblem();
+		assertEquals(expectedValue, pb.sum(negativeArray));
+
+	}
+
+	@Test
+	public void testSumOfEvenNumbers_WithNegativeWithWrongDataSet() {
+
+		expectedValue = -6;
+		FirstProblem pb = new FirstProblem();
+		assertNotSame(expectedValue, pb.sum(negativeArray));
+
 	}
 }
