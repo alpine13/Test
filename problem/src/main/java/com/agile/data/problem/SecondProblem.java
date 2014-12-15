@@ -1,61 +1,42 @@
 package com.agile.data.problem;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SecondProblem {
 
-	public int maxValue(int array[]) {
+	public List<Integer> maxValue(int array[]) {
 
+		List<Integer> resultsList = new ArrayList<Integer>();
 		int maxValue = array[0];
+		int secondValue = array[1];
 		for (int i = 0; i < array.length; i++) {
 
 			if (array[i] > maxValue) {
+				secondValue = maxValue;
 				maxValue = array[i];
 			}
-		}
-		return maxValue;
-	}
-
-	public int secondValue(int array[]) {
-
-		int secondValue = array[0];
-		int maxValue = maxValue(array);
-		if (secondValue == maxValue)
-			secondValue = array[1];
-		for (int i = 0; i < array.length; i++) {
 			if (array[i] < maxValue && array[i] > secondValue) {
-
 				secondValue = array[i];
 			}
-
 		}
-
-		return secondValue;
+		resultsList.add(maxValue);
+		resultsList.add(secondValue);
+		return resultsList;
 	}
+
 
 	public static void main(String[] args) {
 
-		Scanner s = new Scanner(System.in);
-
-		System.out.println("Array lenght:");
-		int n = s.nextInt();
-
-		int array[] = new int[n];
-		System.out.println("Enter loop values");
-		for (int i = 0; i <= n - 1; i++) {
-			array[i] = s.nextInt();
-		}
-		System.out.println("Array is:");
-		System.out.println(Arrays.toString(array));
+		BaseClass base = new BaseClass();
+		int array[] = base.readFromKeyboard();
 
 		SecondProblem pb = new SecondProblem();
-		int first = pb.maxValue(array);
-		int second = pb.secondValue(array);
+		List<Integer> resultsList = new ArrayList<Integer>();
+		resultsList = pb.maxValue(array);
 
-		System.out.println("largest number: " + first);
-		System.out.println("2nd largest number: " + second);
-		s.close();
+		System.out.println("largest number: " + resultsList.get(0));
+		System.out.println("2nd largest number: " + resultsList.get(1));
 	}
 
 }

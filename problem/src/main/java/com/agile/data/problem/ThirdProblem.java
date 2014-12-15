@@ -1,68 +1,33 @@
 package com.agile.data.problem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
 public class ThirdProblem {
 
-	public List<Integer> findDuplicate(int array[]) {
+	public boolean findDuplicate(int array[]) {
 
-		List<Integer> findIt = new ArrayList<Integer>();
 		int n = array.length;
-		int pos = 1;
-		for (int i : array) {
+		boolean isDuplicated = false;
 
-			while (n > pos) {
-				if (i == array[n - 1]) {
-					if (findIt.contains(i)) {
+		for (int i = 0; i < n; i++) {
+			if (array[Math.abs(array[i])] > 0) {
+				array[Math.abs(array[i])] = (-1) * array[Math.abs(array[i])];
 
-					} else {
-						findIt.add(i);
-					}
+			} else if (array[Math.abs(array[i])] < 0) {
+				isDuplicated = true;
 
-				}
-				n--;
 			}
-			pos++;
-			n = array.length;
+
 		}
-		return findIt;
+		return isDuplicated;
 	}
 
 	public static void main(String[] args) {
 
-		Scanner s = new Scanner(System.in);
+		BaseClass base = new BaseClass();
+		int array[] = base.readFromKeyboard();
 
-		System.out.println("Array lenght:");
-		int n = s.nextInt();
+		ThirdProblem pb = new ThirdProblem();
+		boolean result = pb.findDuplicate(array);
+		System.out.println("Are duplicates in this array?  " + result);
 
-		int array[] = new int[n];
-
-		System.out.println("Enter loop values");
-		while (true) {
-
-			for (int i = 0; i <= n - 1; i++) {
-				int input = s.nextInt();
-				if (input > n) {
-					System.out.println("Try a lower value than: " + n);
-					i--;
-					continue;
-
-				} else {
-					array[i] = input;
-
-				}
-			}
-
-			System.out.println("Array is:");
-			System.out.println(Arrays.toString(array));
-
-			ThirdProblem pb = new ThirdProblem();
-			List<Integer> result = pb.findDuplicate(array);
-			System.out.println("Duplicate number is: " + result);
-			s.close();
-		}
 	}
 }

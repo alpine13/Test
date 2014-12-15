@@ -3,65 +3,38 @@ package com.agile.data.problem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 public class ThirdProblemTest {
 
 	public int array[] = { 1, 2, 3, 3, 4 };
-	public int multipleValueArray[] = { 1, 1, 2, 2, 2, 6 };
-	public int validArray[] = { 7, 9, 3, 0, 3, 2 };
-	public int plainArray[] = { 0,0,0,0,0,0,0,0,0,0,0};
-	public List<Integer> expectedValues = new ArrayList<Integer>();
+	public int plainArray[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+	boolean expectedValue = false;
+	public ThirdProblem pb = new ThirdProblem();
 
 	@Test
 	public void testIsDuplicate_WithCorectDataSet() {
 
-		expectedValues.add(3);
+		expectedValue = true;
 
-		ThirdProblem pb = new ThirdProblem();
-		assertEquals(expectedValues, pb.findDuplicate(array));
+		assertEquals(expectedValue, pb.findDuplicate(array));
 
 	}
 
 	@Test
 	public void testIsDuplicate_WithWrongDataSet() {
 
-		expectedValues.add(4);
+		expectedValue = false;
 
-		ThirdProblem pb = new ThirdProblem();
-		assertNotSame(expectedValues, pb.findDuplicate(array));
+		assertNotSame(expectedValue, pb.findDuplicate(array));
 	}
 
-	@Test
-	public void testIsMoreThanOneDuplicate() {
-
-		expectedValues.add(1);
-		expectedValues.add(2);
-
-		ThirdProblem pb = new ThirdProblem();
-		assertEquals(expectedValues, pb.findDuplicate(multipleValueArray));
-	}
-
-	@Test
-	public void testIsValid() {
-
-		expectedValues.add(3);
-		
-		ThirdProblem pb = new ThirdProblem();
-		assertEquals(expectedValues, pb.findDuplicate(validArray));
-
-	}
-	
 	@Test
 	public void testIsDuplicate_WithPlainCorectDataSet() {
 
-		expectedValues.add(0);
+		expectedValue = true;
 
-		ThirdProblem pb = new ThirdProblem();
-		assertEquals(expectedValues, pb.findDuplicate(plainArray));
+		assertEquals(expectedValue, pb.findDuplicate(plainArray));
 
 	}
 
